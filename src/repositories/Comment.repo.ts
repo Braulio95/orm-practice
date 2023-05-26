@@ -2,16 +2,21 @@ import Comment from '../models/Comment'
 import { IComment } from '../interfaces'
 import Post from '../models/Post'
 export const createComment = async ({ text, userId, postId }: IComment): Promise<Comment | null> => {
-    try {
-        const response = await Comment.create({
-            text, userId, postId
-        })
-        return response
 
+    try {
+        if (userId & postId) {
+            const response = await Comment.create({
+                text, userId, postId
+            })
+            return response
+        } else {
+            return null
+        }
     } catch (error) {
         console.error(error)
         return null
     }
+
 
 
 }

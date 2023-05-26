@@ -12,13 +12,6 @@ const setupPost = (sequelize) => {
             primaryKey: true
         },
         text: sequelize_1.DataTypes.STRING,
-        // userId: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: User,
-        //         key: 'id'
-        //     }
-        //}
     }, {
         modelName: 'Post',
         sequelize

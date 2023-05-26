@@ -17,10 +17,15 @@ const Comment_1 = __importDefault(require("../models/Comment"));
 const Post_1 = __importDefault(require("../models/Post"));
 const createComment = ({ text, userId, postId }) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield Comment_1.default.create({
-            text, userId, postId
-        });
-        return response;
+        if (userId & postId) {
+            const response = yield Comment_1.default.create({
+                text, userId, postId
+            });
+            return response;
+        }
+        else {
+            return null;
+        }
     }
     catch (error) {
         console.error(error);

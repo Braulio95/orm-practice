@@ -4,10 +4,16 @@ import { IPost } from '../interfaces'
 
 export const createPost = async ({ text, userId }: IPost): Promise<Post | null> => {
     try {
-        const response = await Post.create({
-            text
-        })
-        return response
+        if (userId) {
+            const response = await Post.create({
+                text, userId
+            })
+            return response
+
+        } else {
+            return null
+        }
+
 
     } catch (error) {
         console.error(error)

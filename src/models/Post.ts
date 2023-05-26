@@ -1,10 +1,10 @@
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes, Sequelize } from 'sequelize';
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes, Sequelize, ForeignKey } from 'sequelize';
 import User from './User'
 
 class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>>{
     declare id: CreationOptional<number>;
     declare text: string;
-    //declare userId: number;
+    declare userId: ForeignKey<User['id']>;
 }
 
 export const setupPost = (sequelize: Sequelize) => {
@@ -15,14 +15,6 @@ export const setupPost = (sequelize: Sequelize) => {
             primaryKey: true
         },
         text: DataTypes.STRING,
-        // userId: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: User,
-        //         key: 'id'
-        //     }
-
-        //}
     }, {
         modelName: 'Post',
         sequelize
